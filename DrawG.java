@@ -7,10 +7,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 public class DrawG implements ActionListener {
 	/*
 	 * @author: Ivan Liu
@@ -38,27 +40,40 @@ public class DrawG implements ActionListener {
 	 public DrawG() {
 	        frame = new JFrame("Chess Board");
 	       
-	        /*button1 = new JButton();
-	        button1.setBounds(500,100, 100, 50);
-	        button1.addActionListener(e -> System.out.println("boo"));
-	        button1.setText("PvP");
-	        button1.setFocusable(false);
-	        
-	        button2 = new JButton();
-	        button2.setBounds(500,50, 100, 50);
-	        button2.addActionListener(e -> System.out.println("bee"));
-	        button2.setText("PvE");
-	        button2.setFocusable(false);
-	       */
+	       
 	        
 	        frame.setSize(650, 450);
-	        //frame.add(button1);
-	        //frame.add(button2);
+	        
 	        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	        frame.setPreferredSize(frame.getSize());
 	        frame.add(new MultiDraw(frame.getSize()));
 	        frame.pack();
+	        
+		menubar = new JMenuBar();
+	        frame.setJMenuBar(menubar);
+	        
+	        JMenu pvp = new JMenu("PVP");
+	        menubar.add(pvp);
+	       
+	        JMenuItem hard = new JMenuItem("Hard");
+	        JMenuItem medium = new JMenuItem("Medium");
+	        JMenuItem easy = new JMenuItem("Easy");
+	        
+	        
+	        JMenu pve = new JMenu("PVE");
+	        menubar.add(pve);
 	      
+	        pve.add(hard);
+	        pve.add(medium);
+	        pve.add(easy);
+	       //add action 
+	        class exitaction implements ActionListener{
+	        	public void actionPerformed (ActionEvent c) {
+	        		System.out.println("you have choosen hard");
+	        	}
+	        }
+	        
+	        hard.addActionListener(new exitaction());
 	        
 	        
 	        frame.setVisible(true);
@@ -99,7 +114,7 @@ public class DrawG implements ActionListener {
 	        	}
 	        	
 	        	
-	        	//µ±PVE ÇÒµçÄÔÏÈÊÖÊ±£¬µÚÒ»²½ĞëÔÚÊó±ê´¥·¢Ç°Ğ´Èë¾ØÕóÇÒ»­ÔÚUIÉÏ
+	        	//å½“PVE ä¸”ç”µè„‘å…ˆæ‰‹æ—¶ï¼Œç¬¬ä¸€æ­¥é¡»åœ¨é¼ æ ‡è§¦å‘å‰å†™å…¥çŸ©é˜µä¸”ç”»åœ¨UIä¸Š
 	        	if(mode == 1&& turn == 1) {
 	        		
 	        		
@@ -184,7 +199,7 @@ public class DrawG implements ActionListener {
 	        			}
 	        		turn++;
 	        		}
-	        	}else if(mode == 1) {//PVEÄ£Ê½Ê±µÄÊó±ê´¥·¢ÊÂ¼ş
+	        	}else if(mode == 1) {//PVEæ¨¡å¼æ—¶çš„é¼ æ ‡è§¦å‘äº‹ä»¶
 	        		/*
 	        		 *
 	        		 * 
@@ -202,12 +217,12 @@ public class DrawG implements ActionListener {
 	        				System.out.println(conditionVars[1]);
 	        				gameOver(conditionVars[1]);
 	        				
-	        				//ÔÚÕâĞ´¸öËø¶¨´°¿ÚÊäÈë»¹ÓĞÊ¤Àûµ¯´°
+	        				//åœ¨è¿™å†™ä¸ªé”å®šçª—å£è¾“å…¥è¿˜æœ‰èƒœåˆ©å¼¹çª—
 	        				return;
 	        			}
 	        			int[][] dataOnBoard = board.readValueFromBoard();
-	        			/*int[] xy = AIÂä×ÓµÄ·½·¨Ãû[dataOnBoard,AIlvl]; 
-	        			*int[] ySpot = board.setPieceOnBoard(2,int[0])°ÑÉÏÒ»ĞĞµÃ³öµÄÖµĞ´Èë¾ØÕó
+	        			/*int[] xy = AIè½å­çš„æ–¹æ³•å[dataOnBoard,AIlvl]; 
+	        			*int[] ySpot = board.setPieceOnBoard(2,int[0])æŠŠä¸Šä¸€è¡Œå¾—å‡ºçš„å€¼å†™å…¥çŸ©é˜µ
 	        			*conditionVars = board.winCondition(playerNo, 4);
 	        			*
 	        			*}
