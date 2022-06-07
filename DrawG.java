@@ -20,16 +20,29 @@ import java.awt.event.MouseEvent;
 
 public class DrawG implements ActionListener {
 	private JFrame frame;
+	private JButton button1;
+	private JButton button2;
 	private JMenuBar menubar;
 	//Initial setup
 	 public DrawG() {
 	        frame = new JFrame("Chess Board");
 	       
+	        button1 = new JButton();
+	        button1.setBounds(500,100, 100, 50);
+	        button1.addActionListener(e -> System.out.println("boo"));
+	        button1.setText("PvP");
+	        button1.setFocusable(false);
 	        
+	        button2 = new JButton();
+	        button2.setBounds(500,50, 100, 50);
+	        button2.addActionListener(e -> System.out.println("bee"));
+	        button2.setText("PvE");
+	        button2.setFocusable(false);
 	       
 	        
 	        frame.setSize(650, 450);
-	        
+	        frame.add(button1);
+	        frame.add(button2);
 	        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	        frame.setPreferredSize(frame.getSize());
 	        frame.add(new MultiDraw(frame.getSize()));
@@ -70,8 +83,8 @@ public class DrawG implements ActionListener {
 	        
 	    }
 	 	 
-		public static void main(String... argv) {
-	        new DrawG();
+		public  void chessboard() {
+			new DrawG();
 	       
 	    }
 	 public static class MultiDraw extends JPanel  implements MouseListener {
@@ -97,7 +110,7 @@ public class DrawG implements ActionListener {
          }
      }
 
-	@Override
+	
 	//paint background
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
