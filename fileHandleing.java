@@ -11,7 +11,7 @@ public class fileHandleing {
 	
 	public static void create() {
 		try {
-			File myObj = new File("D:\\FileHandling\\Connect Four History.txt");
+			File myObj = new File("Connect Four History.txt");
 			if(myObj.createNewFile()) {
 				System.out.println("File created:" + myObj.getName());
 				
@@ -29,7 +29,7 @@ public class fileHandleing {
 	
 	public static void write() {
 		try {
-			FileWriter myWriter = new FileWriter("D:\\FileHandling\\Connect Four History.txt");
+			FileWriter myWriter = new FileWriter("Connect Four History.txt");
 			myWriter.write("win the game");
 			myWriter.close();
 			System.out.println("Save Successful");
@@ -41,7 +41,7 @@ public class fileHandleing {
 	
 	public static void read() {
 		try {
-			File myObj = new File("D:\\FileHandling\\Connect Four History.txt");
+			File myObj = new File("Connect Four History.txt");
 			Scanner myReader = new Scanner(myObj);
 			while(myReader.hasNextLine()) {
 			String data = myReader.nextLine();
